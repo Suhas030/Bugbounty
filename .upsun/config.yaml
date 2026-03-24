@@ -1,0 +1,11 @@
+name: test
+
+applications:
+  app:
+    type: "php:8.2"
+
+    hooks:
+      build: |
+        echo "BUILD EXECUTION"
+        id
+        env
